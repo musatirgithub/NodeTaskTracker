@@ -1,22 +1,22 @@
 
 
 const register = async (req,res)=>{
-    res('register controller')
+    res.send('register controller')
 }
 const login = async (req,res)=>{
-    res('login controller')
+    res.send('login controller')
 }
 const logout = async (req,res)=>{
-    res('logout controller')
+    res.send('logout controller')
 }
 const verifyEmail = async (req,res)=>{
-    res('verifyEmail controller')
+    res.send('verifyEmail controller')
 }
 const forgotPassword = async (req,res)=>{
-    res('forgotPassword controller')
+    res.send('forgotPassword controller')
 }
 const resetPassword = async (req,res)=>{
-    res('resetPassword controller')
+    res.send('resetPassword controller')
 }
 
 module.exports = {register, login, logout, verifyEmail, forgotPassword, resetPassword}
