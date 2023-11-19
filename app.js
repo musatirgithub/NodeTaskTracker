@@ -27,7 +27,8 @@ const userRouter = require('./routes/userRoutes');
 
 
 // middleware requires
-
+const notFoundMiddleware = require('./middlewares/not-found');
+const errorHandlerMiddleware = require('./middlewares/error-handler');
 
 // security package invoke
 app.set('trust proxy', 1);
@@ -54,6 +55,10 @@ app.use(fileUpload());
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/user', userRouter);
 
+
+// notFound & Error uses
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 
 const port = process.env.PORT || 5000;
