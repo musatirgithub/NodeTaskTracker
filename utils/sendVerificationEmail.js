@@ -6,7 +6,7 @@ const sendVerificationEmail = async ({name, email, verificationToken, origin})=>
     const htmlMessage = `<p>Please confirm your email by clicking following link: <a href="${verifyEmail}">Verify Email</a></p>`;
 
     const msg = {
-        to:email,
+        to:`${email}`,
         from:"musatir@gmail.com",
         subject:"Email Confirmation",
         html:`<h3>Hello ${name}</h3>
