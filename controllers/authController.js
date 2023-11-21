@@ -92,12 +92,24 @@ const login = async (req,res)=>{
     await Token.create(userToken);
 
     attachCookiesToResponse({res, user:tokenUser, refreshToken});
-    
+
     res.status(StatusCodes.OK).json({user:tokenUser})
 }
 
 const logout = async (req,res)=>{
-    res.send('logout controller')
+    await Token.findOneAndDelete({user:req.user.userId});
+
+    res.cookie('accessToken', 'logout', {
+        httpOnly:true,
+        expires:new Date(Date.now()),
+    });
+
+    res.cookie('refreshToken', 'logout', {
+        httpOnly:true,
+        expires: new Date(Date.now()),
+    });
+
+    res.status(StatusCodes.OK).json({msg:'User logged out!'})
 }
 
 const forgotPassword = async (req,res)=>{
