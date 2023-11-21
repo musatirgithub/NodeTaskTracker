@@ -31,10 +31,11 @@ const register = async (req,res)=>{
 const verifyEmail = async (req,res)=>{
     const {email, verificationToken} = req.body;
     const user = await User.findOne({email});
+
     if(!user){
         throw new CustomError.UnauthenticatedError('Verification failed')
     }
- 
+
     if(verificationToken !== user.verificationToken){
         throw new CustomError.UnauthenticatedError('Verification failed')
     }
@@ -49,7 +50,50 @@ const verifyEmail = async (req,res)=>{
 }
 
 const login = async (req,res)=>{
-    res.send('login controller')
+    const {email, password} = req.body;
+    if(!user || !password){
+        throw new CustomError.BadRequestError('Please provide email and password')
+    }
+    
+    const user = await User.findOne({email});
+    if(!user){
+        throw new CustomError.UnauthenticatedError('Invalid credentials');
+    }
+
+    const isPasswordCorrect = await user.comparePassword(password);
+    if(!isPasswordCorrect){
+        throw new CustomError.UnauthenticatedError('invalid credentials');
+    }
+
+    if(!user.isVerified){
+        throw new CustomError.UnauthenticatedError('Please verify your email');
+    }
+
+    const tokenUser = createTokenUser(user);
+
+    let refreshToken = '';
+
+    const existingToken = await Token.findOne({user:user._id})
+    if(existingToken){
+        const {isValid} = existingToken;
+        if(!isValid){
+            throw new CustomError.UnauthenticatedError('invalid credentials')
+        }
+        refreshToken = existingToken.refreshToken;
+        attachCookiesToResponse({res, user:tokenUser, refreshToken});
+        res.status(StatusCodes.OK).json({user:tokenUser})
+        return;
+    }
+
+    refreshToken = crypto.randomBytes(40).toString('hex');
+    const userAgent = req.headers['user-agent'];
+    const ip = req.ip;
+    const userToken = {refreshToken, userAgent, ip, user:user._id}
+    await Token.create(userToken);
+
+    attachCookiesToResponse({res, user:tokenUser, refreshToken});
+    
+    res.status(StatusCodes.OK).json({user:tokenUser})
 }
 
 const logout = async (req,res)=>{
