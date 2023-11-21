@@ -28,18 +28,38 @@ const register = async (req,res)=>{
     res.status(StatusCodes.CREATED).json({msg:'Success! Please check your email to verify account'})
 }
 
+const verifyEmail = async (req,res)=>{
+    const {email, verificationToken} = req.body;
+    const user = await User.findOne({email});
+    if(!user){
+        throw new CustomError.UnauthenticatedError('Verification failed')
+    }
+ 
+    if(verificationToken !== user.verificationToken){
+        throw new CustomError.UnauthenticatedError('Verification failed')
+    }
+
+    user.isVerified = true;
+    user.verified = Date.now();
+    user.verificationToken='';
+
+    await user.save();
+
+    res.status(StatusCodes.OK).json({msg:'Email verified'});
+}
+
 const login = async (req,res)=>{
     res.send('login controller')
 }
+
 const logout = async (req,res)=>{
     res.send('logout controller')
 }
-const verifyEmail = async (req,res)=>{
-    res.send('verifyEmail controller')
-}
+
 const forgotPassword = async (req,res)=>{
     res.send('forgotPassword controller')
 }
+
 const resetPassword = async (req,res)=>{
     res.send('resetPassword controller')
 }
