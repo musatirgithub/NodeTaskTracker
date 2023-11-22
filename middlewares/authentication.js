@@ -1,5 +1,5 @@
 const CustomError = require('../errors');
-const Token = require('../models/Token');
+const Token = require('../models/token');
 const {isTokenValid, attachCookiesToResponse} = require('../utils');
 
 const authenticateUser = async (req,res,next)=>{
