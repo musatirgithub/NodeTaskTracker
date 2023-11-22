@@ -38,12 +38,12 @@ const updateUser = async (req,res)=>{
     attachCookiesToResponse({res, user:tokenUser});
     res.status(StatusCodes.OK).json({user:tokenUser});
 }
+
 const updateUserPassword = async (req,res)=>{
     res.send('update user password')
 }
 const showMe = async (req,res)=>{
-
-    res.send('show current user')
+    res.status(StatusCodes).json({user:req.user});
 }
 
 module.exports = {getAllUsers, getSingleUser, updateUser, updateUserPassword, showMe}
