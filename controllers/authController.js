@@ -113,7 +113,28 @@ const logout = async (req,res)=>{
 }
 
 const forgotPassword = async (req,res)=>{
-    res.send('forgotPassword controller')
+    const {email} = req.body;
+
+    if(!email){
+        throw new CustomError.BadRequestError('Please provide valid email')
+    }
+    
+    const user = await User.findOne({email});
+    if(user){
+        const passwordToken = crypto.randomBytes(70).toString('hex');
+        const origin = 'http://localhost:3000';
+        sendResetPasswordEmail({name:user.name, email:user.email, token:passwordToken, origin});
+
+        const tenMinutes = 1000*60*10;
+
+        user.passwordToken = createHash(passwordToken);
+        user.passwordTokenExpirationDate = new Date(Date.now() + tenMinutes)
+        await user.save();
+    
+        
+    }
+
+    res.status(StatusCodes.OK).json({msg:'Please check your email for reset password link! Link expires within 10 minutes!'})
 }
 
 const resetPassword = async (req,res)=>{
