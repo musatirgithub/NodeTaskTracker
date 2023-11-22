@@ -138,7 +138,22 @@ const forgotPassword = async (req,res)=>{
 }
 
 const resetPassword = async (req,res)=>{
-    res.send('resetPassword controller')
+    const {email, token, password} = req.body;
+    if(!email || !oldPassword || !newPassword){
+        throw new CustomError.BadRequestError('Please provide all values!');
+    }
+    const user = await User.findOne({email});
+    if(user){
+        const currentDate = new Date();
+        if(user.passwordToken === createHash(token) && user.passwordTokenExpirationDate > currentDate){
+            user.password = password;
+            user.passwordToken = null;
+            user.passwordTokenExpirationDate = null;
+            await user.save()           
+        }
+    }
+
+    res.send('reset password');
 }
 
 module.exports = {register, login, logout, verifyEmail, forgotPassword, resetPassword}
