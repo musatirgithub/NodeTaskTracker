@@ -10,6 +10,11 @@ const TaskSchema = new mongoose.Schema({
     isDone:{
         type:Boolean,
         default:false,
+    },
+    user:{
+        type:mongoose.Types.ObjectId,
+        ref:'User',
+        required:true,
     }
 }, {timestamps:true})
 
