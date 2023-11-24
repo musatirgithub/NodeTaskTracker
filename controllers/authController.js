@@ -139,7 +139,7 @@ const forgotPassword = async (req,res)=>{
 
 const resetPassword = async (req,res)=>{
     const {email, token, password} = req.body;
-    if(!email || !oldPassword || !newPassword){
+    if(!email || !token || !password){
         throw new CustomError.BadRequestError('Please provide all values!');
     }
     const user = await User.findOne({email});
