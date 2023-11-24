@@ -1,11 +1,12 @@
 const Task = require('../models/task');
 const CustomError = require('../errors')
 const {StatusCodes} = require('http-status-codes');
-
+const {} = require('../utils/checkPermissions');
+const checkPermissions = require('../utils/checkPermissions');
 
 const getAllTasks = async (req, res)=>{
     const tasks = await Task.find({}).sort('-isDone deadline')
-    res.send('get all tasks')
+    res.status(StatusCodes.OK).json({tasks})
 }
 const getTasks = async (req, res)=>{
     const tasks = await Task.find({user:req.user.userId}).select('-user').sort('-isDone deadline')
@@ -25,6 +26,7 @@ const deleteTasks = async (req, res)=>{
     if(!task){
         throw new CustomError.NotFoundError(`No task with id: ${taskId}`)
     }
+    checkPermissions(req.user.userId, task.user)
     res.status(StatusCodes.OK).json({msg:'Task deleted successfully'})
 }
 const updateTask = async (req, res)=>{
@@ -33,6 +35,7 @@ const updateTask = async (req, res)=>{
     if(!task){
         throw new CustomError.NotFoundError(`No task with ID: ${taskId}`);
     }
+    checkPermissions(req.user.userId, task.user)
     res.status(StatusCodes.OK).json({task})
 }
 const getTask = async (req, res)=>{
@@ -41,6 +44,7 @@ const getTask = async (req, res)=>{
     if(!task){
         throw new CustomError.NotFoundError(`No task with ID: ${taskId}`);
     }
+    checkPermissions(req.user.userId, task.user)
     res.status(StatusCodes.OK).json({task})
 }
 
