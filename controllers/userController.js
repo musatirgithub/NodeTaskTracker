@@ -55,7 +55,7 @@ const updateUserPassword = async (req,res)=>{
     res.status(StatusCodes.OK).json({msg: 'Success! Password Updated.'})
 }
 const showMe = async (req,res)=>{
-    res.status(StatusCodes).json({user:req.user});
+    res.status(StatusCodes.OK).json({user:req.user});
 }
 
 module.exports = {getAllUsers, getSingleUser, updateUser, updateUserPassword, showMe}
