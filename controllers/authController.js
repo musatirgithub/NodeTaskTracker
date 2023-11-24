@@ -153,7 +153,7 @@ const resetPassword = async (req,res)=>{
         }
     }
 
-    res.send('reset password');
+    res.status(StatusCodes.OK).json({msg:'Password changed successfully!'})
 }
 
 module.exports = {register, login, logout, verifyEmail, forgotPassword, resetPassword}
