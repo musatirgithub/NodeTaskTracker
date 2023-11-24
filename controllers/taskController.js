@@ -1,7 +1,6 @@
 const Task = require('../models/task');
 const CustomError = require('../errors')
 const {StatusCodes} = require('http-status-codes');
-const {} = require('../utils/checkPermissions');
 const checkPermissions = require('../utils/checkPermissions');
 
 const getAllTasks = async (req, res)=>{
@@ -26,7 +25,7 @@ const deleteTasks = async (req, res)=>{
     if(!task){
         throw new CustomError.NotFoundError(`No task with id: ${taskId}`)
     }
-    checkPermissions(req.user.userId, task.user)
+    checkPermissions(req.user, task.user)
     res.status(StatusCodes.OK).json({msg:'Task deleted successfully'})
 }
 const updateTask = async (req, res)=>{
@@ -41,11 +40,11 @@ const updateTask = async (req, res)=>{
 }
 const getTask = async (req, res)=>{
     const {id:taskId} = req.params;
-    const task = await Task.findOne({_id:taskId}).select('-user');
+    const task = await Task.findOne({_id:taskId});
     if(!task){
         throw new CustomError.NotFoundError(`No task with ID: ${taskId}`);
     }
-    checkPermissions(req.user.userId, task.user)
+    checkPermissions(req.user, task.user)
     res.status(StatusCodes.OK).json({task})
 }
 
