@@ -31,12 +31,13 @@ const deleteTasks = async (req, res)=>{
 }
 const updateTask = async (req, res)=>{
     const {id:taskId} = req.params;
-    const task = await Task.findOneAndUpdate({_id:taskId}, req.body, {new:true, runValidators:true}).select('-user')
+    const task = await Task.findOneAndUpdate({_id:taskId}, req.body, {new:true, runValidators:true})
     if(!task){
         throw new CustomError.NotFoundError(`No task with ID: ${taskId}`);
     }
-    checkPermissions(req.user.userId, task.user)
-    res.status(StatusCodes.OK).json({task})
+
+    checkPermissions(req.user, task.user);
+    res.status(StatusCodes.OK).json({msg:'Success! Task updated.'});
 }
 const getTask = async (req, res)=>{
     const {id:taskId} = req.params;
