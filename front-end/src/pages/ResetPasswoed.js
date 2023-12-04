@@ -1,7 +1,7 @@
-const ResetPasswoed = () => {
+const ResetPassword = () => {
   return (
-    <div>ResetPasswoed</div>
+    <div>ResetPassword</div>
   )
 }
 
-export default ResetPasswoed
+export default ResetPassword
