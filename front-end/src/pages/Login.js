@@ -4,7 +4,7 @@ import useAuthCalls from "../hooks/useAuthCalls";
 
 const Login = () => {
   const {login} = useAuthCalls();
-  const [userInfo, setUserInfo] = useState({})
+  const [userInfo, setUserInfo] = useState({email:'', password:''})
 
   const handleChange = (e)=>{
     setUserInfo({...userInfo, [e.target.name]:e.target.value})
