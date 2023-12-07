@@ -18,7 +18,7 @@ const useAuthCalls = () => {
     console.log(userInfo)
     dispatch(fetchStart());
     try {
-      const {data}  = await axiosPublic.post("api/v1/auth/login", userInfo);
+      const {data}  = await axiosPublic.post("api/v1/auth/login", userInfo, {credentials: 'include'});
       console.log(data.user)
       dispatch(loginSuccess(data));
       // toastSuccessNotify("Logged In!");
@@ -48,14 +48,27 @@ const useAuthCalls = () => {
   //   dispatch(fetchStart());
   //   try {
   //     const { data } = await axiosPublic.post("users/register/", userInfo);
-  //     dispatch(registerSuccess(data));
-  //     toastSuccessNotify("Registered!");
+  //     // toastSuccessNotify("Registered!");
   //     navigate("/");
   //   } catch (err) {
   //     dispatch(fetchFail());
-  //     toastErrorNotify(err);
+  //     // toastErrorNotify(err);
   //   }
   // };
+
+  // const verifyEmail = async (userInfo) => {
+  //   dispatch(fetchStart());
+  //   try {
+  //     const { data } = await axiosPublic.post("users/register/", userInfo);
+  //     dispatch(registerSuccess(data));
+  //     // toastSuccessNotify("Registered!");
+  //     navigate("/");
+  //   } catch (err) {
+  //     dispatch(fetchFail());
+  //     // toastErrorNotify(err);
+  //   }
+  // };
+
 
   return {
     login,
