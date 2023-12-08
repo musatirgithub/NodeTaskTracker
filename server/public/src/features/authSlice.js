@@ -26,11 +26,15 @@ const authSlice = createSlice({
       state.currentUser = null;
       state.role = null;
     },
-    registerSuccess: (state, { payload }) => {
+    // registrationSuccess: (state, { payload }) => {
+    //   state.loading = false;
+    //   state.error = false;
+    //   state.currentUser = payload?.user?.name;
+    //   state.role = payload?.user?.role;
+    // },
+    validationSuccess: (state) => {
       state.loading = false;
       state.error = false;
-      state.currentUser = payload?.name;
-      state.role = payload?.role;
     },
     fetchFail: (state) => {
       state.loading = false;
@@ -43,7 +47,8 @@ export const {
   fetchStart,
   loginSuccess,
   logoutSuccess,
-  registerSuccess,
+  // registrationSuccess,
+  validationSuccess,
   fetchFail,
 } = authSlice.actions;
 export default authSlice.reducer;

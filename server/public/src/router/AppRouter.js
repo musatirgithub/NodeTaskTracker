@@ -8,6 +8,8 @@ import Register from "../pages/Register";
 import ResetPassword from "../pages/ResetPassword";
 import Tasks from "../pages/Tasks";
 import Home from "../pages/Home";
+import VerifyEmail from "../pages/VerifyEmail";
+import VerifyEmailWarning from "../pages/VerifyEmailWarning";
 
 import Navbar from "../components/Navbar";
 
@@ -20,6 +22,8 @@ const AppRouter = ()=>{
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/reset-password" element={<ResetPassword/>}/>
+                <Route path="/user/verify-email" element={<VerifyEmail/>}/>
+                <Route path="/verify-email-warning" element={<VerifyEmailWarning/>}/>
                 <Route path="/tasks" element={<PrivateRouter/>}>
                     <Route path="" element={<Tasks/>}/>
                 </Route>
