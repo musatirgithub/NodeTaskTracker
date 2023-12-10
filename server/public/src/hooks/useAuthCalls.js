@@ -85,6 +85,20 @@ const useAuthCalls = () => {
     }
   };
 
+  const resetPassword = async (userInfo) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosPublic.post("/api/v1/auth/reset-password", userInfo);
+      // dispatch(registrationSuccess(data))
+      // toastSuccessNotify(data.msg);
+      navigate("/login");
+    } catch (err) {
+      dispatch(fetchFail());
+      console.log(err.response.data.msg)
+      // toastErrorNotify(err.response.data.msg);
+    }
+  };
+
 
   return {
     login,
@@ -92,6 +106,7 @@ const useAuthCalls = () => {
     register,
     verifyEmail,
     forgotPassword,
+    resetPassword,
   };
 };
 
