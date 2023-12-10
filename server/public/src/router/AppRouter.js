@@ -22,7 +22,7 @@ const AppRouter = ()=>{
                 <Route path="/" element={<Home/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/reset-password" element={<ResetPassword/>}/>
+                <Route path="/user/reset-password" element={<ResetPassword/>}/>
                 <Route path="/forgot-password" element={<ForgotPassword/>}/>
                 <Route path="/user/verify-email" element={<VerifyEmail/>}/>
                 <Route path="/verify-email-warning" element={<VerifyEmailWarning/>}/>
