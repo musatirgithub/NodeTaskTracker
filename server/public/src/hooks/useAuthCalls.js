@@ -63,10 +63,24 @@ const useAuthCalls = () => {
     try {
       await axiosPublic.post("api/v1/auth/verify-email", userInfo);
       dispatch(validationSuccess());
-      // toastSuccessNotify("User Verified!");
+      // toastSuccessNotify("User Verified! Please Login!");
       navigate("/login");
     } catch (err) {
       dispatch(fetchFail());
+      // toastErrorNotify(err.response.data.msg);
+    }
+  };
+
+  const forgotPassword = async (userInfo) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosPublic.post("/api/v1/auth/forgot-password", userInfo);
+      // dispatch(registrationSuccess(data))
+      // toastSuccessNotify(data.msg);
+      navigate("/login");
+    } catch (err) {
+      dispatch(fetchFail());
+      console.log(err.response.data.msg)
       // toastErrorNotify(err.response.data.msg);
     }
   };
@@ -77,6 +91,7 @@ const useAuthCalls = () => {
     logout,
     register,
     verifyEmail,
+    forgotPassword,
   };
 };
 
