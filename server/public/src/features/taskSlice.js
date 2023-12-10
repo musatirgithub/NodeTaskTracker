@@ -7,6 +7,7 @@ const taskSlice = createSlice({
     loading: true,
     error: false,
     tasks: null,
+    task: null,
     isSidebarOpen: false,
   },
   reducers: {
@@ -18,15 +19,25 @@ const taskSlice = createSlice({
     //   state.loading = false;
     //   state[url] = data;
     // },
+    getAllTasks: (state, { payload }) => {
+      state.loading = false;
+      state.tasks = payload[0];
+    //   state.mediator = payload[1];
+    },
     getTasks: (state, { payload }) => {
       state.loading = false;
       state.tasks = payload[0];
     //   state.mediator = payload[1];
     },
-    // updateTaskSuccess: (state, { payload }) => {
-    //   state.loading = false;
-    //   state.profile = payload;
-    // },
+    updateTaskSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.task = payload;
+    },
+    deleteTaskSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.task = payload;
+    },
+
     // getProfileSuccess: (state, { payload }) => {
     //   state.loading = false;
     //   state.profile = payload;
