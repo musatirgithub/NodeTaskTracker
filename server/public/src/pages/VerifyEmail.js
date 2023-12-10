@@ -9,7 +9,7 @@ function useQuery() {
 
 const VerifyEmail = () => {
     const [pageLoading, setPageLoading] = useState(false);
-    const {error} = useSelector((state)=>state.error)
+    const {error} = useSelector((state)=>state.auth)
 
     const {verifyEmail} = useAuthCalls();
     const query = useQuery();
