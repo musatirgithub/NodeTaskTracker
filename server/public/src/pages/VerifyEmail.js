@@ -1,7 +1,7 @@
 import { useLocation, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useAuthCalls from '../hooks/useAuthCalls';
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -9,8 +9,7 @@ function useQuery() {
 
 const VerifyEmail = () => {
     const [pageLoading, setPageLoading] = useState(false);
-
-    const {loading} = useSelector((state)=>state.auth)
+    const {error} = useSelector((state)=>state.error)
 
     const {verifyEmail} = useAuthCalls();
     const query = useQuery();
@@ -19,7 +18,9 @@ const VerifyEmail = () => {
         verificationToken:query.get("token")
     }
     useEffect(() => {
+        setPageLoading(true);
         verifyEmail(userInfo)
+        setPageLoading(false);
     }, [])
 
     if(pageLoading){
@@ -28,6 +29,13 @@ const VerifyEmail = () => {
         )
     }
     
+    if(error){
+      return(
+        <section className='text-2xl capitalize min-h-[calc(full-10rem)] flex justify-center items-center'>
+          Something went wrong...
+        </section>
+      )
+    }
   return (
     <main className='text-2xl capitalize min-h-screen flex flex-col justify-center items-center gap-5'>
         <h4 className=''>You are verified.</h4>
