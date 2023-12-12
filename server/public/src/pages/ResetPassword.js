@@ -17,7 +17,6 @@ const ResetPassword = () => {
   }
   
   const query = useQuery();
-  console.log("query", query);
   
   const userInfo = {
     email: query.get("email"),
