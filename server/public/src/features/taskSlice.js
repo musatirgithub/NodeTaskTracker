@@ -19,29 +19,31 @@ const taskSlice = createSlice({
     //   state.loading = false;
     //   state[url] = data;
     // },
-    getAllTasks: (state, { payload }) => {
+    getAllTasksSuccess: (state, { payload }) => {
       state.loading = false;
       state.tasks = payload[0];
-    //   state.mediator = payload[1];
     },
-    getTasks: (state, { payload }) => {
+    getTasksSuccess: (state, { payload }) => {
       state.loading = false;
       state.tasks = payload[0];
-    //   state.mediator = payload[1];
+    },
+    getSingleTaskSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.task = payload[0];
+    },
+    createTaskSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.task = payload[0];
     },
     updateTaskSuccess: (state, { payload }) => {
       state.loading = false;
-      state.task = payload;
+      state.task = payload[0];
     },
     deleteTaskSuccess: (state, { payload }) => {
       state.loading = false;
-      state.task = payload;
+      state.tasks = payload[0];
     },
 
-    // getProfileSuccess: (state, { payload }) => {
-    //   state.loading = false;
-    //   state.profile = payload;
-    // },
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;
@@ -57,10 +59,12 @@ const taskSlice = createSlice({
 
 export const {
   fetchStart,
-  getRecordAndMediatorSuccess,
-  getProfileSuccess,
-  fetchFail,
-  updateProfileSuccess,
+  getAllTasksSuccess,
+  getTasksSuccess,
+  getSingleTaskSuccess,
+  createTaskSuccess,
+  updateTaskSuccess,
+  deleteTaskSuccess,
   openSidebar,
   closeSidebar,
 } = taskSlice.actions;
