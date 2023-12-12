@@ -1,68 +1,86 @@
 // import { axiosWithToken } from "../service/axiosInstance";
 import { useDispatch } from "react-redux";
 import {
-  fetchFail,
   fetchStart,
-  getRecordAndMediatorSuccess,
-  getProfileSuccess,
-  updateProfileSuccess,
+  getAllTasksSuccess,
+  getTasksSuccess,
+  getSingleTaskSuccess,
+  createTaskSuccess,
+  updateTaskSuccess,
+  deleteTaskSuccess,
 } from "../features/incidentSlice";
-import useAxios from "./useAxios";
+import axiosPublic from "../utils/axiosPublic";
 import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 
 const useTaskCalls = () => {
   const dispatch = useDispatch();
-  const { axiosWithToken } = useAxios();
 
-  //!------------- GET CALLS ----------------
-  // const getApiData = async (url) => {
+  // const getRecordAndMediator = async () => {
   //   dispatch(fetchStart());
   //   try {
-  //     const { data } = await axiosWithToken.get(`api/${url}/`);
-  //     dispatch(getSuccess({ data, url }));
+  //     const [record, mediator] = await Promise.all([
+  //       axiosWithToken.get("api/record/"),
+  //       axiosWithToken.get("api/mediator/"),
+  //     ]);
+
+  //     dispatch(getRecordAndMediatorSuccess([record?.data, mediator?.data]));
   //   } catch (error) {
   //     dispatch(fetchFail());
-  //     console.log(error);
   //   }
   // };
 
-  // const getRecords = () => getApiData("record");
-  // const getMediator = () => getApiData("mediator");
-
-  const getRecordAndMediator = async () => {
+  const getTasks = async () => {
     dispatch(fetchStart());
     try {
-      const [record, mediator] = await Promise.all([
-        axiosWithToken.get("api/record/"),
-        axiosWithToken.get("api/mediator/"),
-      ]);
-
-      dispatch(getRecordAndMediatorSuccess([record?.data, mediator?.data]));
+      const { data } = await axiosPublic.get("/api/v1/task/", {withCredentials:'include'});
+      dispatch(getTasksSuccess(data.tasks));
     } catch (error) {
       dispatch(fetchFail());
     }
   };
-
-  const getProfile = async () => {
+  const createTask = async (taskInfo) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.get("users/profile/");
-      dispatch(getProfileSuccess(data));
+      await axiosWithToken.post(`/api/v1/task/`, taskInfo, {withCredentials:'include'});
+      await getTasks();
     } catch (error) {
       dispatch(fetchFail());
+      console.log(err.response.data.msg)
+      // toastErrorNotify(err.response.data.msg);
     }
   };
-  //!------------- PUT CALLS ----------------
-  const updateProfile = async (updateData) => {
+  const deleteTask = async (id) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.put(`users/profile/${updateData.id}/`, updateData);
-      dispatch(updateProfileSuccess(data));
-      getProfile();
-      toastSuccessNotify("Profil güncellendi!");
+      await axiosWithToken.delete(`/api/v1/task/${id}`, {withCredentials:'include'});
+      await getTasks();
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("Profil güncellenemedi!");
+      console.log(err.response.data.msg)
+      // toastErrorNotify(err.response.data.msg);
+    }
+  };
+  const getTask = async (id) => {
+    dispatch(fetchStart());
+    try {
+      const {data} = await axiosWithToken.delete(`/api/v1/task/${id}`, {withCredentials:'include'});
+      getSingleTaskSuccess(data.task);
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(err.response.data.msg)
+      // toastErrorNotify(err.response.data.msg);
+    }
+  };
+  const updateTask = async (taskInfo, id) => {
+    dispatch(fetchStart());
+    try {
+      const {data} = await axiosWithToken.patch(`/api/v1/task/${id}`, taskInfo, {withCredentials:'include'});
+      getSingleTaskSuccess(data.task);
+      await getTasks();
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(err.response.data.msg)
+      // toastErrorNotify(err.response.data.msg);
     }
   };
 
