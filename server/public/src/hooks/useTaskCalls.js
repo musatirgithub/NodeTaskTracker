@@ -29,6 +29,15 @@ const useTaskCalls = () => {
   //   }
   // };
 
+  const getAllTasks = async () => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosPublic.get("/api/v1/task/all-tasks", {withCredentials:'include'});
+      dispatch(getTasksSuccess(data.tasks));
+    } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
   const getTasks = async () => {
     dispatch(fetchStart());
     try {
@@ -86,9 +95,12 @@ const useTaskCalls = () => {
 
 
   return {
-    getRecordAndMediator,
-    getProfile,
-    updateProfile,
+    getAllTasks,
+    getTasks,
+    createTask,
+    deleteTask,
+    getTask,
+    updateTask,
   };
 };
 
