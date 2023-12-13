@@ -2,12 +2,9 @@
 import { useDispatch } from "react-redux";
 import {
   fetchStart,
-  getAllTasksSuccess,
   getTasksSuccess,
   getSingleTaskSuccess,
-  createTaskSuccess,
-  updateTaskSuccess,
-  deleteTaskSuccess,
+  fetchFail,
 } from "../features/incidentSlice";
 import axiosPublic from "../utils/axiosPublic";
 import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
