@@ -5,9 +5,9 @@ import {
   getTasksSuccess,
   getSingleTaskSuccess,
   fetchFail,
-} from "../features/incidentSlice";
-import axiosPublic from "../utils/axiosPublic";
-import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
+} from "../features/taskSlice";
+import {axiosPublic} from "../utils/axiosPublic";
+// import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 
 const useTaskCalls = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const useTaskCalls = () => {
     try {
       const { data } = await axiosPublic.get("/api/v1/task/all-tasks", {withCredentials:'include'});
       dispatch(getTasksSuccess(data.tasks));
-    } catch (error) {
+    } catch (err) {
       dispatch(fetchFail());
     }
   };
@@ -40,16 +40,16 @@ const useTaskCalls = () => {
     try {
       const { data } = await axiosPublic.get("/api/v1/task/", {withCredentials:'include'});
       dispatch(getTasksSuccess(data.tasks));
-    } catch (error) {
+    } catch (err) {
       dispatch(fetchFail());
     }
   };
   const createTask = async (taskInfo) => {
     dispatch(fetchStart());
     try {
-      await axiosWithToken.post(`/api/v1/task/`, taskInfo, {withCredentials:'include'});
+      await axiosPublic.post(`/api/v1/task/`, taskInfo, {withCredentials:'include'});
       await getTasks();
-    } catch (error) {
+    } catch (err) {
       dispatch(fetchFail());
       console.log(err.response.data.msg)
       // toastErrorNotify(err.response.data.msg);
@@ -58,9 +58,9 @@ const useTaskCalls = () => {
   const deleteTask = async (id) => {
     dispatch(fetchStart());
     try {
-      await axiosWithToken.delete(`/api/v1/task/${id}`, {withCredentials:'include'});
+      await axiosPublic.delete(`/api/v1/task/${id}`, {withCredentials:'include'});
       await getTasks();
-    } catch (error) {
+    } catch (err) {
       dispatch(fetchFail());
       console.log(err.response.data.msg)
       // toastErrorNotify(err.response.data.msg);
@@ -69,9 +69,9 @@ const useTaskCalls = () => {
   const getTask = async (id) => {
     dispatch(fetchStart());
     try {
-      const {data} = await axiosWithToken.delete(`/api/v1/task/${id}`, {withCredentials:'include'});
+      const {data} = await axiosPublic.delete(`/api/v1/task/${id}`, {withCredentials:'include'});
       getSingleTaskSuccess(data.task);
-    } catch (error) {
+    } catch (err) {
       dispatch(fetchFail());
       console.log(err.response.data.msg)
       // toastErrorNotify(err.response.data.msg);
@@ -80,10 +80,10 @@ const useTaskCalls = () => {
   const updateTask = async (taskInfo, id) => {
     dispatch(fetchStart());
     try {
-      const {data} = await axiosWithToken.patch(`/api/v1/task/${id}`, taskInfo, {withCredentials:'include'});
+      const {data} = await axiosPublic.patch(`/api/v1/task/${id}`, taskInfo, {withCredentials:'include'});
       getSingleTaskSuccess(data.task);
       await getTasks();
-    } catch (error) {
+    } catch (err) {
       dispatch(fetchFail());
       console.log(err.response.data.msg)
       // toastErrorNotify(err.response.data.msg);
@@ -101,4 +101,4 @@ const useTaskCalls = () => {
   };
 };
 
-export default useApiCalls;
+export default useTaskCalls;
