@@ -19,10 +19,7 @@ const taskSlice = createSlice({
     //   state.loading = false;
     //   state[url] = data;
     // },
-    getAllTasksSuccess: (state, { payload }) => {
-      state.loading = false;
-      state.tasks = payload[0];
-    },
+
     getTasksSuccess: (state, { payload }) => {
       state.loading = false;
       state.tasks = payload[0];
@@ -30,18 +27,6 @@ const taskSlice = createSlice({
     getSingleTaskSuccess: (state, { payload }) => {
       state.loading = false;
       state.task = payload[0];
-    },
-    createTaskSuccess: (state, { payload }) => {
-      state.loading = false;
-      state.task = payload[0];
-    },
-    updateTaskSuccess: (state, { payload }) => {
-      state.loading = false;
-      state.task = payload[0];
-    },
-    deleteTaskSuccess: (state, { payload }) => {
-      state.loading = false;
-      state.tasks = payload[0];
     },
 
     fetchFail: (state) => {
@@ -59,12 +44,9 @@ const taskSlice = createSlice({
 
 export const {
   fetchStart,
-  getAllTasksSuccess,
   getTasksSuccess,
   getSingleTaskSuccess,
-  createTaskSuccess,
-  updateTaskSuccess,
-  deleteTaskSuccess,
+  fetchFail,
   openSidebar,
   closeSidebar,
 } = taskSlice.actions;
