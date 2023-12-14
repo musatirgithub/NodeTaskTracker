@@ -1,7 +1,26 @@
+import { useSelector } from "react-redux";
+import {useEffect, useState} from "react";
+import useTaskCalls from "../hooks/useTaskCalls";
 
+const TaskList = () => {
+    const {tasks} = useSelector((state)=>state.task);
+    
 
-const TaskList = ({tasks}) => {
-    console.log("tasks", tasks)
+    const [loading, setLoading] = useState(true)
+    const {getTasks} = useTaskCalls();
+  
+  
+    useEffect(() => {
+      setLoading(true);
+      getTasks();
+      setLoading(false);
+    }, [])
+
+    if(loading){
+        return(
+            <div>Loading...</div>
+        )
+    }
   return (
     <div>
         {tasks?.map((task, index)=>{
