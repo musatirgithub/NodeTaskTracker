@@ -22,11 +22,11 @@ const taskSlice = createSlice({
 
     getTasksSuccess: (state, { payload }) => {
       state.loading = false;
-      state.tasks = payload[0];
+      state.tasks = payload;
     },
     getSingleTaskSuccess: (state, { payload }) => {
       state.loading = false;
-      state.task = payload[0];
+      state.task = payload;
     },
 
     fetchFail: (state) => {
