@@ -15,7 +15,7 @@ const TaskForm = () => {
         createTask(formData);
         setFormData({name:'', deadline:''});
     }
-    console.log("formData", formData)
+    
   return (
     <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center min-h-[screen-10rem]">
       <section>
