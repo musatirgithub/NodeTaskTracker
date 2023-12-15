@@ -8,6 +8,7 @@ const taskSlice = createSlice({
     error: false,
     tasks: null,
     task: null,
+    isModalOpen:false,
     isSidebarOpen: false,
   },
   reducers: {
@@ -33,6 +34,12 @@ const taskSlice = createSlice({
       state.loading = false;
       state.error = true;
     },
+    openModal: (state) => {
+      state.isModalOpen = true;
+    },
+    closeModal: (state) => {
+      state.isModalOpen = false;
+    },
     openSidebar: (state) => {
       state.isSidebarOpen = true;
     },
@@ -47,6 +54,8 @@ export const {
   getTasksSuccess,
   getSingleTaskSuccess,
   fetchFail,
+  openModal,
+  closeModal,
   openSidebar,
   closeSidebar,
 } = taskSlice.actions;
