@@ -69,7 +69,7 @@ const useTaskCalls = () => {
   const getTask = async (id) => {
     dispatch(fetchStart());
     try {
-      const {data} = await axiosPublic.delete(`/api/v1/task/${id}`, {withCredentials:'include'});
+      const {data} = await axiosPublic.get(`/api/v1/task/${id}`, {withCredentials:'include'});
       getSingleTaskSuccess(data.task);
     } catch (err) {
       dispatch(fetchFail());
