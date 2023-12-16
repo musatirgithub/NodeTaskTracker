@@ -1,18 +1,14 @@
-import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import useTaskCalls from "../hooks/useTaskCalls";
 import { useSelector } from "react-redux";
+import { closeModal } from "../features/taskSlice";
+import { useDispatch } from "react-redux";
 
-const UpdateTaskModal = ({_id, name, deadline, isDone}) => {
-    const {updateTask, getTask} = useTaskCalls();
-    
-    useEffect(() => {
-        getTask(_id);
-    }, [])
-    
-    const {task, closeModal} = useSelector((state)=>state.task);
-    const [formData, setFormData] = useState({name:task?.name, deadline:task?.deadline})
+const UpdateTaskModal = () => {
+  const dispatch = useDispatch();
+    const {updateTask} = useTaskCalls();
+    const {task} = useSelector((state)=>state.task);
+    const [formData, setFormData] = useState({name:task.name, deadline:task.deadline});
 
     const handleChange = (e)=>{
         setFormData({...formData, [e.target.name]:e.target.value})
@@ -20,9 +16,9 @@ const UpdateTaskModal = ({_id, name, deadline, isDone}) => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        updateTask(formData);
+        updateTask(formData, task._id);
         setFormData({name:'', deadline:''});
-        closeModal();
+        dispatch(closeModal());
 
     }
 
@@ -31,7 +27,7 @@ const UpdateTaskModal = ({_id, name, deadline, isDone}) => {
       <section>
         <div className="flex gap-3">
       <label htmlFor="name">Task</label>
-      <input type="text" name="name" id="name" required value={formData.task} onChange={handleChange}/>
+      <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange}/>
       </div>
       <div className="flex gap-3">
       <label htmlFor="deadline">Deadline</label>
