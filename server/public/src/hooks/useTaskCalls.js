@@ -70,7 +70,7 @@ const useTaskCalls = () => {
     dispatch(fetchStart());
     try {
       const {data} = await axiosPublic.get(`/api/v1/task/${id}`, {withCredentials:'include'});
-      getSingleTaskSuccess(data.task);
+      dispatch(getSingleTaskSuccess(data.task));
     } catch (err) {
       dispatch(fetchFail());
       console.log(err.response.data.msg)
