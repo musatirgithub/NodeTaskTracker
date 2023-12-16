@@ -25,7 +25,7 @@ const attachCookiesToResponse = ({res, user, refreshToken})=>{
         // path:"/",
     });
 
-    res.cookie('refreshToken', refreshToken, {
+    res.cookie('refreshToken', refreshTokenJWT, {
         httpOnly:true,
         secure:process.env.NODE_ENV === 'production',
         // secure:false,
