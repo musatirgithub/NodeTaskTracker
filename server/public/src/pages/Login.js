@@ -17,22 +17,34 @@ const Login = () => {
     }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center min-h-[screen-10rem]">
-      <section>
-        <div className="flex gap-3">
-      <label htmlFor="email">Email</label>
-      <input type="email" name="email" id="email" required value={userInfo.email} onChange={handleChange}/>
+    <main className="flex justify-evenly items-center bg-[#0D1732] min-h-[calc(100vh-8rem)]">
+      <div className="hidden lg:block w-[45rem] ">
+        <img src = "https://img.freepik.com/free-photo/flat-lay-notebook-with-list-desk_23-2148938725.jpg?w=996&t=st=1702818921~exp=1702819521~hmac=40acebaf881588fb69f96bda93d2ecd161769e680b9cc52eed16bebd03632876"
+       alt="login"
+       className="object-cover"/>
       </div>
-      <div className="flex gap-3">
-      <label htmlFor="password">Password</label>
-      <input type="password" name="password" id="password" required value={userInfo.password} onChange={handleChange}/>
+      
+
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 justify-center items-center min-h-[screen-10rem]" autoComplete="off">
+      <section className="flex flex-col gap-3 ">
+        <div className="flex flex-col gap-3">
+      <label htmlFor="email" className="text-[#EEEDE8]">Email</label>
+      <input type="email" name="email" id="email" required value={userInfo.email} onChange={handleChange} placeholder="Enter email address..."
+      className="bg-[#D9C6A7] text-[#0D1732] focus:outline-none border border-gray-300 rounded py-2 px-4 block w-full appearance-none placeholder-[#3A3B3C]"/>
       </div>
-      </section>
-      <h4>
-        <Link to='/forgot-password' className="btn btn-link">Forgot Password?</Link>
+      <div className="flex  flex-col gap-3">
+      <label htmlFor="password" className="text-[#EEEDE8]">Password</label>
+      <input type="password" name="password" id="password" required value={userInfo.password} onChange={handleChange} placeholder="Enter password..."
+      className="bg-[#D9C6A7] text-[#0D1732] focus:outline-none border border-gray-300 rounded py-2 px-4 block w-full appearance-none placeholder-[#3A3B3C]"/>
+      </div>
+      <h4 className="flex flex-col gap-3">
+        <Link to='/forgot-password' className="text-[#fff] block text-center hover:text-[#C6A779]">Forgot Password?</Link>
+        <Link to='/register' className="text-[#fff] block text-center hover:text-[#C6A779]">Not a member? Register!</Link>
       </h4>
-      <button type="submit" className="btn btn-neutral">Submit</button>
+      </section>
+      <button type="submit" className={`btn bg-[#D9C6A7] hover:bg-[#C6A779] text-[#0D1732] w-full`}>Login</button>
     </form>
+    </main>
   )
 }
 
