@@ -13,6 +13,7 @@ import VerifyEmailWarning from "../pages/VerifyEmailWarning";
 import ForgotPassword from "../pages/ForgotPassword";
 
 import Navbar from "../components/Navbar";
+import Footbar from "../components/Footbar";
 
 const AppRouter = ()=>{
     return(
@@ -33,6 +34,7 @@ const AppRouter = ()=>{
                     <Route path="" element={<ChangePassword/>}/>
                 </Route>
             </Routes>
+            <Footbar/>
         </BrowserRouter>
     )
 }
