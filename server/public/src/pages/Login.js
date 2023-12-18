@@ -14,6 +14,7 @@ const Login = () => {
   const handleSubmit = (e)=>{
     e.preventDefault();
     login(userInfo);
+    setUserInfo({email:'', password:''});
     }
 
   return (
@@ -38,11 +39,11 @@ const Login = () => {
       className="bg-[#D9C6A7] text-[#0D1732] focus:outline-none border border-gray-300 rounded py-2 px-4 block w-full appearance-none placeholder-[#3A3B3C]"/>
       </div>
       <h4 className="flex flex-col gap-3">
-        <Link to='/forgot-password' className="text-[#fff] block text-center hover:text-[#C6A779]">Forgot Password?</Link>
-        <Link to='/register' className="text-[#fff] block text-center hover:text-[#C6A779]">Not a member? Register!</Link>
+        <Link to='/forgot-password' className="text-[#F8B664] block text-center hover:text-[#C6A779]">Forgot Password?</Link>
+        <Link to='/register' className="text-[#F8B664] block text-center hover:text-[#C6A779]">Not a member? Register!</Link>
       </h4>
       </section>
-      <button type="submit" className={`btn bg-[#D9C6A7] hover:bg-[#C6A779] text-[#0D1732] w-full`}>Login</button>
+      <button type="submit" className={`btn bg-[#F8B664] hover:bg-[#C6A779] text-[#0D1732] w-full`}>Login</button>
     </form>
     </main>
   )
