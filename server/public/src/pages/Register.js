@@ -16,15 +16,33 @@ const Login = () => {
     }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="name" name="name" id="name" required value={userInfo.name} onChange={handleChange}/>
-      <label htmlFor="email">Email</label>
-      <input type="email" name="email" id="email" required value={userInfo.email} onChange={handleChange}/>
-      <label htmlFor="password">Password</label>
-      <input type="password" name="password" id="password" required value={userInfo.password} onChange={handleChange}/>
-      <button type="submit" className="text-2xl underline">Submit</button>
+    <main className="flex justify-evenly items-center bg-[#0D1732] min-h-[calc(100vh-8rem)]">
+    <div className="hidden lg:block w-[45rem] ">
+      <img src = "https://img.freepik.com/free-photo/male-hand-with-pen_155003-6453.jpg?w=996&t=st=1702918093~exp=1702918693~hmac=61bdd2e1e510f26eb29e0c1944649907dc0d6d7e7fd7e60c7a75d13990132d54"
+     alt="login"
+     className="object-cover"/>
+    </div>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 justify-center items-center min-h-[screen-10rem]">
+      <section className="flex flex-col gap-3 ">
+        <div className="flex flex-col gap-3">
+      <label htmlFor="name" className="text-[#EEEDE8]">Name</label>
+      <input type="name" name="name" id="name" required value={userInfo.name} onChange={handleChange}
+       className="bg-[#D9C6A7] text-[#0D1732] focus:outline-none border border-gray-300 rounded py-2 px-4 block w-full appearance-none placeholder-[#3A3B3C]"/>
+      </div>
+      <div className="flex flex-col gap-3">
+      <label htmlFor="email" className="text-[#EEEDE8]">Email</label>
+      <input type="email" name="email" id="email" required value={userInfo.email} onChange={handleChange}
+      className="bg-[#D9C6A7] text-[#0D1732] focus:outline-none border border-gray-300 rounded py-2 px-4 block w-full appearance-none placeholder-[#3A3B3C]"/>
+      </div>
+      <div className="flex flex-col gap-3">
+      <label htmlFor="password" className="text-[#EEEDE8]">Password</label>
+      <input type="password" name="password" id="password" required value={userInfo.password} onChange={handleChange}
+      className="bg-[#D9C6A7] text-[#0D1732] focus:outline-none border border-gray-300 rounded py-2 px-4 block w-full appearance-none placeholder-[#3A3B3C]"/>
+      </div>
+      </section>
+      <button type="submit" className={`btn bg-[#D9C6A7] hover:bg-[#C6A779] text-[#0D1732] w-full`} >Register</button>
     </form>
+    </main>
   )
 }
 
