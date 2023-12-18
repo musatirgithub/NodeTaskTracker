@@ -8,7 +8,7 @@ const UpdateTaskModal = () => {
   const dispatch = useDispatch();
     const {updateTask} = useTaskCalls();
     const {task} = useSelector((state)=>state.task);
-    const [formData, setFormData] = useState({name:task.name, deadline:task.deadline});
+    const [formData, setFormData] = useState({name:task?.name, deadline:task?.deadline});
 
     const handleChange = (e)=>{
         setFormData({...formData, [e.target.name]:e.target.value})
