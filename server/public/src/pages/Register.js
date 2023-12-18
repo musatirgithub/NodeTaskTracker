@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useAuthCalls from "../hooks/useAuthCalls";
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
   const handleSubmit = (e)=>{
     e.preventDefault();
     register(userInfo);
+    setUserInfo({email:'', password:''});
     }
 
   return (
@@ -39,8 +41,11 @@ const Login = () => {
       <input type="password" name="password" id="password" required value={userInfo.password} onChange={handleChange}
       className="bg-[#D9C6A7] text-[#0D1732] focus:outline-none border border-gray-300 rounded py-2 px-4 block w-full appearance-none placeholder-[#3A3B3C]"/>
       </div>
+      <h4 className="flex flex-col gap-3">
+        <Link to='/login' className="text-[#F8B664] block text-center hover:text-[#C6A779]">Already a member? Sign In!</Link>
+      </h4>
       </section>
-      <button type="submit" className={`btn bg-[#D9C6A7] hover:bg-[#C6A779] text-[#0D1732] w-full`} >Register</button>
+      <button type="submit" className={`btn bg-[#F8B664] hover:bg-[#C6A779] text-[#0D1732] w-full`} >Register</button>
     </form>
     </main>
   )
