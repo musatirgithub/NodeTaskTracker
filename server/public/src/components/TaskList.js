@@ -10,7 +10,6 @@ import { openModal } from "../features/taskSlice";
 const TaskList = () => {
     const dispatch = useDispatch();
     const {tasks} = useSelector((state)=>state.task);
-    
 
     const [loading, setLoading] = useState(true)
     const {getTasks, deleteTask, getTask} = useTaskCalls();
@@ -31,8 +30,11 @@ const TaskList = () => {
             <div>Loading...</div>
         )
     }
+    if(tasks && tasks.length === 0){
+        return <section className="text-center pt-5 text-[#EEEDE8]">No tasks to show...</section>
+    }
   return (
-    <div className="p-5">
+    <div className="p-5 text-[#EEEDE8]">
         {tasks?.map((task, index)=>{
             return(
                 <div key={index} className="flex gap-5 justify-center items-center relative">
