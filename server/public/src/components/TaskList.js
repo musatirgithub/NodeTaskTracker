@@ -49,12 +49,16 @@ const TaskList = () => {
             const remainder = remainingDays(task.deadline)
             console.log("remainder", index, remainder)
             return(
-                <div key={index} className="flex gap-5 justify-center items-center lg:w-[64rem] mx-auto">
+                <div key={index} className="flex justify-center items-center lg:w-[64rem] mx-auto">
+                    <div className="flex items-center lg:w-[35rem] text-center">
+                        <div className="w-[1.5rem]">
                     {remainder && <IoWarning color={remainder}/>}
-                    <h4 className="lg:w-[35rem] text-center">{task.name}</h4>
+                    </div>
+                    <h4 >{task.name}</h4>
+                    </div>
                     <h4 className="lg:w-[19rem] text-center">{dateTimeConverter(new Date(task.deadline))}</h4>
-                    <h4 className="lg:w-[5rem] text-center"><FaPencilAlt onClick={()=>handleClick(task._id)} className="cursor-pointer"/></h4>
-                    <h4 className="lg:w-[5rem] text-center"><FaRegTrashCan onClick={()=>deleteTask(task._id)} className="cursor-pointer"/></h4>
+                    <h4 className="lg:w-[5rem]"><FaPencilAlt onClick={()=>handleClick(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-green-700"/></h4>
+                    <h4 className="lg:w-[5rem]"><FaRegTrashCan onClick={()=>deleteTask(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-red-700"/></h4>
                 </div>
             )
         })}
