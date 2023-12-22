@@ -47,14 +47,13 @@ const TaskList = () => {
         </div>
         {tasks?.map((task, index)=>{
             const remainder = remainingDays(task.deadline)
-            console.log("remainder", index, remainder)
             return(
                 <div key={index} className="flex items-center lg:w-[64rem] mx-auto">
                     <div className="flex items-center lg:w-[35rem]">
                         <div className="w-[1.5rem]">
                     {remainder && <IoWarning color={remainder}/>}
                     </div>
-                    <h4 >{task.name}</h4>
+                    <h4 className="w-[33.5rem]">{task.name}</h4>
                     </div>
                     <h4 className="lg:w-[19rem] text-center">{dateTimeConverter(new Date(task.deadline))}</h4>
                     <h4 className="lg:w-[5rem]"><FaPencilAlt onClick={()=>handleClick(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-green-700"/></h4>
