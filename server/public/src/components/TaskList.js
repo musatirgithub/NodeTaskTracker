@@ -49,8 +49,8 @@ const TaskList = () => {
             const remainder = remainingDays(task.deadline)
             console.log("remainder", index, remainder)
             return(
-                <div key={index} className="flex justify-center items-center lg:w-[64rem] mx-auto">
-                    <div className="flex items-center lg:w-[35rem] text-center">
+                <div key={index} className="flex items-center lg:w-[64rem] mx-auto">
+                    <div className="flex items-center lg:w-[35rem]">
                         <div className="w-[1.5rem]">
                     {remainder && <IoWarning color={remainder}/>}
                     </div>
