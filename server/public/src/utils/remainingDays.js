@@ -2,9 +2,6 @@
 const remainingDays = (deadline) => {
     const currentDayTime = new Date(Date.now());
     const diff = ((new Date(deadline)) - currentDayTime)/ (1000 * 60 * 60)
-    console.log("currentDayTime", currentDayTime);
-    console.log("deadline", new Date(deadline));
-    console.log("diff", diff)
     if(diff > 48){
         return
     }
