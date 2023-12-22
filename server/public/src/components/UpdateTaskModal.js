@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useTaskCalls from "../hooks/useTaskCalls";
 import { useSelector } from "react-redux";
 import { closeModal } from "../features/taskSlice";
 import { useDispatch } from "react-redux";
+import dateTimeFormatter from "../utils/dateTimeFormatter";
 
 const UpdateTaskModal = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ const UpdateTaskModal = () => {
     const {task} = useSelector((state)=>state.task);
     const [formData, setFormData] = useState({name:task?.name, deadline:task?.deadline});
 
+    console.log("task", task);
     const handleChange = (e)=>{
         setFormData({...formData, [e.target.name]:e.target.value})
     }
@@ -19,8 +21,12 @@ const UpdateTaskModal = () => {
         updateTask(formData, task._id);
         setFormData({name:'', deadline:''});
         dispatch(closeModal());
-
     }
+
+    useEffect(() => {
+      setFormData({name:task?.name, deadline:dateTimeFormatter(task?.deadline)});
+    }, [])
+    
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center min-h-[screen-10rem]">
