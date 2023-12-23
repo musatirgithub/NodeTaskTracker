@@ -18,6 +18,7 @@ const Navbar = () => {
       <h4>{currentUser?`Welcome ${currentUser}`:'Welcome visitor'}</h4>
       </div>
       <div className="flex justify-evenly gap-3">
+        <Link to='/change-password'>Change Password</Link>
       <Link to='/register'>Register</Link>
       <Link to='/login'>Login</Link>
       <h4 onClick={logout} className="cursor-pointer">Logout</h4>
