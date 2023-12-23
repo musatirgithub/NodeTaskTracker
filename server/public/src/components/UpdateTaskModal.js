@@ -25,7 +25,7 @@ const UpdateTaskModal = () => {
 
     useEffect(() => {
       setFormData({name:task?.name, deadline:dateTimeFormatter(task?.deadline)});
-    }, [])
+    }, [task])
     
 
   return (
