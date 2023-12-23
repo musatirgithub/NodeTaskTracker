@@ -5,7 +5,7 @@ const dateTimeConverter = (dateTime)=>{
     const date = dateTime.getDate();
     const hour = dateTime.getHours();
     const minute = dateTime.getMinutes();
-    return `${date}.${month}.${year} ${hour}:${minute}`
+    return `${date}.${month}`
 }
 
 export default dateTimeConverter;
