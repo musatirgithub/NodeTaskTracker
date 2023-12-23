@@ -37,31 +37,37 @@ const TaskList = () => {
         return <section className="text-center pt-5 text-[#EEEDE8]">No tasks to show...</section>
     }
   return (
-    <div className="p-1 text-[#EEEDE8]">
+    
+    <div className="1 text-[#EEEDE8]">
         <h3 className="text-center text-2xl">Tasks</h3>
-        <div className="flex lg:w-[64rem] mx-auto">
-            <h4 className="lg:w-[35rem] text-center">Task</h4>
-            <h4 className="lg:w-[19rem] text-center">Deadline</h4>
-            <h4 className="lg:w-[5rem] text-center">Edit</h4>
-            <h4 className="lg:w-[5rem] text-center">Delete</h4>
-        </div>
+        <section className="flex justify-center items-center">
+        <table>
+        <tr className="lg:w-[64rem]">
+            <th className="w-[14rem] lg:w-[35rem] text-center">Task</th>
+            <th className="w-[3rem] lg:w-[19rem] text-center">Dline</th>
+            <th className="w-[2.5rem] lg:w-[5rem] text-center">Edit</th>
+            <th className="w-[2.5rem] lg:w-[5rem] text-center">Del</th>
+        </tr>
         {tasks?.map((task, index)=>{
             const remainder = remainingDays(task.deadline)
             return(
-                <div key={index} className="flex items-center lg:w-[64rem] mx-auto">
-                    <div className="flex items-center lg:w-[35rem]">
+                <tr key={index} className="lg:w-[64rem] even:bg-[#252E46]">
+                    <td className="flex items-center w-[14rem] lg:w-[35rem]">
                         <div className="w-[1.5rem]">
-                    {remainder && <IoWarning color={remainder}/>}
+                    {remainder ? <IoWarning color={remainder} className="w-[1.1rem]"/> : <div className="w-[1.1rem]"></div>}
                     </div>
                     <h4 className="w-[33.5rem]">{task.name}</h4>
-                    </div>
-                    <h4 className="lg:w-[19rem] text-center">{dateTimeConverter(new Date(task.deadline))}</h4>
-                    <h4 className="lg:w-[5rem]"><FaPencilAlt onClick={()=>handleClick(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-blue-700"/></h4>
-                    <h4 className="lg:w-[5rem]"><FaRegTrashCan onClick={()=>deleteTask(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-red-700"/></h4>
-                </div>
+                    </td>
+                    <td className="w-[3rem] lg:w-[19rem] text-center">{dateTimeConverter(new Date(task.deadline))}</td>
+                    <td className="w-[2.5rem] lg:w-[5rem]"><FaPencilAlt onClick={()=>handleClick(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-blue-700"/></td>
+                    <td className="w-[2.5rem] lg:w-[5rem]"><FaRegTrashCan onClick={()=>deleteTask(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-red-700"/></td>
+                </tr>
             )
         })}
+        </table>
+        </section>
     </div>
+    
   )
 }
 
