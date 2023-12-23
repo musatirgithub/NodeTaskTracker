@@ -1,5 +1,6 @@
 // import { axiosWithToken } from "../service/axiosInstance";
 import { useDispatch } from "react-redux";
+import {tokenTimeout} from "../features/authSlice";
 import {
   fetchStart,
   getTasksSuccess,
@@ -7,10 +8,12 @@ import {
   fetchFail,
 } from "../features/taskSlice";
 import {axiosPublic} from "../utils/axiosPublic";
+import { useNavigate } from "react-router-dom";
 // import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 
 const useTaskCalls = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // const getRecordAndMediator = async () => {
   //   dispatch(fetchStart());
@@ -42,6 +45,14 @@ const useTaskCalls = () => {
       dispatch(getTasksSuccess(data.tasks));
     } catch (err) {
       dispatch(fetchFail());
+      console.log(err.response.status)
+      if(err.response.status === 401){
+        dispatch(tokenTimeout());
+        setTimeout(()=>{
+          navigate('/login')
+        }, 3000)
+        
+      }
     }
   };
   const createTask = async (taskInfo) => {
