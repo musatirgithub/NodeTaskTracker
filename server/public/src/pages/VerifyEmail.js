@@ -19,29 +19,34 @@ const VerifyEmail = () => {
     }
     useEffect(() => {
         setPageLoading(true);
-        verifyEmail(userInfo)
+        setTimeout(()=>{
+          verifyEmail(userInfo)
+        }, 3000)
         setPageLoading(false);
     }, [])
 
     if(pageLoading){
         return(
-            <div>Loading...</div>
+          <main className='flex justify-center items-center min-h-[calc(100vh-8rem)]'>
+            <div className='text-2xl capitalize'>Loading...</div>
+            </main>
         )
     }
     
     if(error){
       return(
-        <section className='text-2xl capitalize min-h-[calc(full-10rem)] flex justify-center items-center'>
+        <section className='text-2xl capitalize min-h-[calc(100vh-8rem)] flex justify-center items-center'>
           Something went wrong...
         </section>
       )
     }
   return (
-    <main className='text-2xl capitalize min-h-screen flex flex-col justify-center items-center gap-5'>
-        <h4 className=''>You are verified.</h4>
-        <Link to='/login'>
+    <main className='text-2xl capitalize min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center gap-5'>
+        <h4 className=''>You are being verified.</h4>
+        <h4 className=''>After verification you'll be redirected to Login Page.</h4>
+        {/* <Link to='/login'>
         <button className='btn btn-warning'>Login</button>
-        </Link>
+        </Link> */}
     </main>
 
   )
