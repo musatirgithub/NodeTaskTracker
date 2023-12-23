@@ -56,7 +56,7 @@ const TaskList = () => {
                     <h4 className="w-[33.5rem]">{task.name}</h4>
                     </div>
                     <h4 className="lg:w-[19rem] text-center">{dateTimeConverter(new Date(task.deadline))}</h4>
-                    <h4 className="lg:w-[5rem]"><FaPencilAlt onClick={()=>handleClick(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-green-700"/></h4>
+                    <h4 className="lg:w-[5rem]"><FaPencilAlt onClick={()=>handleClick(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-blue-700"/></h4>
                     <h4 className="lg:w-[5rem]"><FaRegTrashCan onClick={()=>deleteTask(task._id)} className="cursor-pointer w-[1.5rem] mx-auto text-red-700"/></h4>
                 </div>
             )
