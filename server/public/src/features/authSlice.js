@@ -40,6 +40,10 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = true;
     },
+    tokenTimeout: (state) => {
+      state.currentUser = null;
+      state.role = null;
+    }
   },
 });
 
@@ -50,5 +54,6 @@ export const {
   // registrationSuccess,
   validationSuccess,
   fetchFail,
+  tokenTimeout,
 } = authSlice.actions;
 export default authSlice.reducer;
