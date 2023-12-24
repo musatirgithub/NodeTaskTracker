@@ -51,7 +51,7 @@ const TaskList = () => {
         {tasks?.map((task, index)=>{
             const remainder = remainingDays(task.deadline)
             return(
-                <tr key={index} className="lg:w-[64rem] even:bg-[#252E46]">
+                <tr key={index} className={`${task.completed ? "lg:w-[64rem] even:bg-[#252E46] line-through":"lg:w-[64rem] even:bg-[#252E46]"}`}>
                     <td className="flex items-center w-[14rem] lg:w-[35rem]">
                         <div className="w-[1.5rem]">
                     {remainder ? <IoWarning color={remainder} className="w-[1.1rem]"/> : <div className="w-[1.1rem]"></div>}
