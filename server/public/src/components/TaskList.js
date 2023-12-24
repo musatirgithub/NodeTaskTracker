@@ -4,7 +4,6 @@ import useTaskCalls from "../hooks/useTaskCalls";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { IoWarning } from "react-icons/io5";
-import UpdateTaskModal from "./UpdateTaskModal";
 import { useDispatch } from "react-redux";
 import { openModal } from "../features/taskSlice";
 import dateTimeConverter from "../utils/dateTimeConverter";
@@ -39,7 +38,7 @@ const TaskList = () => {
   return (
     
     <div className="1 text-[#EEEDE8]">
-        <h3 className="text-center text-2xl">Tasks</h3>
+        {/* <h3 className="text-center text-2xl">Tasks</h3> */}
         <section className="flex justify-center items-center">
         <table>
         <tr className="lg:w-[64rem]">
