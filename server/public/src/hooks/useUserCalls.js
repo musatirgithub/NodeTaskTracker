@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   fetchStart,
   updatePasswordSuccess,
@@ -9,6 +10,7 @@ import {axiosPublic} from "../utils/axiosPublic";
 
 const useTaskCalls = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // const getRecordAndMediator = async () => {
   //   dispatch(fetchStart());
@@ -29,6 +31,7 @@ const useTaskCalls = () => {
     try {
       await axiosPublic.patch("/api/v1/user/update-user-password", userInfo, {withCredentials:'include'});
       dispatch(updatePasswordSuccess());
+      navigate('/');
     } catch (err) {
       dispatch(fetchFail());
     }
