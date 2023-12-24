@@ -48,9 +48,7 @@ const useTaskCalls = () => {
       console.log(err.response.status)
       if(err.response.status === 401){
         dispatch(tokenTimeout());
-        setTimeout(()=>{
           navigate('/login')
-        }, 3000)
         
       }
     }
@@ -94,6 +92,7 @@ const useTaskCalls = () => {
       const {data} = await axiosPublic.patch(`/api/v1/task/${id}`, taskInfo, {withCredentials:'include'});
       getSingleTaskSuccess(data.task);
       await getTasks();
+      await getTask(id);
     } catch (err) {
       dispatch(fetchFail());
       console.log(err.response.data.msg)
