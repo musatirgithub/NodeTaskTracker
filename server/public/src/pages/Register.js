@@ -24,7 +24,7 @@ const Login = () => {
      alt="login"
      className="object-cover"/>
     </div>
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 justify-center items-center min-h-[screen-10rem]">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 justify-center items-center min-h-[screen-10rem]" autoComplete="off">
       <section className="flex flex-col gap-3 ">
         <div className="flex flex-col gap-3">
       <label htmlFor="name" className="text-[#EEEDE8]">Name</label>
