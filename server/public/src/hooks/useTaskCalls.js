@@ -46,7 +46,6 @@ const useTaskCalls = () => {
       await getTasks();
     } catch (err) {
       dispatch(fetchFail());
-      console.log(err.response.data.msg)
       toastErrorNotify(err.response.data.msg);
     }
   };
@@ -58,7 +57,6 @@ const useTaskCalls = () => {
       await getTasks();
     } catch (err) {
       dispatch(fetchFail());
-      console.log(err.response.data.msg)
       toastErrorNotify(err.response.data.msg);
     }
   };
@@ -69,7 +67,6 @@ const useTaskCalls = () => {
       dispatch(getSingleTaskSuccess(data.task));
     } catch (err) {
       dispatch(fetchFail());
-      console.log(err.response.data.msg)
       toastErrorNotify(err.response.data.msg);
     }
   };

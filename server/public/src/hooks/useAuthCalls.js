@@ -15,17 +15,14 @@ const useAuthCalls = () => {
   const navigate = useNavigate();
 
   const login = async (userInfo) => {
-    console.log(userInfo)
     dispatch(fetchStart());
     try {
       const {data}  = await axiosPublic.post("api/v1/auth/login", userInfo, {withCredentials: 'include'});
-      console.log(data.user)
       dispatch(loginSuccess(data));
       toastSuccessNotify("Successfully logged in!");
       navigate("/");
     } catch (err) {
       dispatch(fetchFail());
-      console.log(err)
       toastErrorNotify(err.response.data.msg);
     }
   };

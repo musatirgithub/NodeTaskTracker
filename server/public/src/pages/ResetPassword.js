@@ -23,8 +23,6 @@ const ResetPassword = () => {
     token: query.get("token"),
     password: password,
   }
-
-  console.log(userInfo);
   
   const handleSubmit = (e)=>{
     e.preventDefault();
