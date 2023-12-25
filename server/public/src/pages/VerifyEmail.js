@@ -1,4 +1,4 @@
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useAuthCalls from '../hooks/useAuthCalls';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
@@ -21,7 +21,7 @@ const VerifyEmail = () => {
         setPageLoading(true);
         setTimeout(()=>{
           verifyEmail(userInfo)
-        }, 3000)
+        }, 5000)
         setPageLoading(false);
     }, [])
 
@@ -33,17 +33,17 @@ const VerifyEmail = () => {
         )
     }
     
-    if(error){
-      return(
-        <section className='text-2xl capitalize min-h-[calc(100vh-8rem)] flex justify-center items-center'>
-          Something went wrong...
-        </section>
-      )
-    }
+    // if(error){
+    //   return(
+    //     <main className='flex justify-center items-center min-h-[calc(100vh-8rem)]'>
+    //       <div className='text-2xl capitalize'>Something went wrong...</div>
+    //     </main>
+    //   )
+    // }
   return (
-    <main className='text-2xl capitalize min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center gap-5'>
-        <h4 className=''>You are being verified.</h4>
-        <h4 className=''>After verification you'll be redirected to Login Page.</h4>
+    <main className='max-w-xl mx-auto p-5 min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center gap-5'>
+        <h4 className='text-center'>You are being verified.</h4>
+        <h4 className='text-center'>After verification you'll be redirected to Login Page.</h4>
         {/* <Link to='/login'>
         <button className='btn btn-warning'>Login</button>
         </Link> */}
