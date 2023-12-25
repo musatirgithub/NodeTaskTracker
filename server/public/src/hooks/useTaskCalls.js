@@ -9,25 +9,11 @@ import {
 } from "../features/taskSlice";
 import {axiosPublic} from "../utils/axiosPublic";
 import { useNavigate } from "react-router-dom";
-// import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
+import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 
 const useTaskCalls = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  // const getRecordAndMediator = async () => {
-  //   dispatch(fetchStart());
-  //   try {
-  //     const [record, mediator] = await Promise.all([
-  //       axiosWithToken.get("api/record/"),
-  //       axiosWithToken.get("api/mediator/"),
-  //     ]);
-
-  //     dispatch(getRecordAndMediatorSuccess([record?.data, mediator?.data]));
-  //   } catch (error) {
-  //     dispatch(fetchFail());
-  //   }
-  // };
 
   const getAllTasks = async () => {
     dispatch(fetchStart());
@@ -45,8 +31,7 @@ const useTaskCalls = () => {
       dispatch(getTasksSuccess(data.tasks));
     } catch (err) {
       dispatch(fetchFail());
-      console.log(err.response.status)
-      if(err.response.status === 401){
+      if(err?.response?.status === 401){
         dispatch(tokenTimeout());
           navigate('/login')
         
@@ -56,23 +41,25 @@ const useTaskCalls = () => {
   const createTask = async (taskInfo) => {
     dispatch(fetchStart());
     try {
-      await axiosPublic.post(`/api/v1/task/`, taskInfo, {withCredentials:'include'});
+      const {data} = await axiosPublic.post(`/api/v1/task/`, taskInfo, {withCredentials:'include'});
+      toastSuccessNotify(data.msg)
       await getTasks();
     } catch (err) {
       dispatch(fetchFail());
       console.log(err.response.data.msg)
-      // toastErrorNotify(err.response.data.msg);
+      toastErrorNotify(err.response.data.msg);
     }
   };
   const deleteTask = async (id) => {
     dispatch(fetchStart());
     try {
-      await axiosPublic.delete(`/api/v1/task/${id}`, {withCredentials:'include'});
+      const {data} = await axiosPublic.delete(`/api/v1/task/${id}`, {withCredentials:'include'});
+      toastSuccessNotify(data.msg)
       await getTasks();
     } catch (err) {
       dispatch(fetchFail());
       console.log(err.response.data.msg)
-      // toastErrorNotify(err.response.data.msg);
+      toastErrorNotify(err.response.data.msg);
     }
   };
   const getTask = async (id) => {
@@ -83,7 +70,7 @@ const useTaskCalls = () => {
     } catch (err) {
       dispatch(fetchFail());
       console.log(err.response.data.msg)
-      // toastErrorNotify(err.response.data.msg);
+      toastErrorNotify(err.response.data.msg);
     }
   };
   const updateTask = async (taskInfo, id) => {
@@ -91,12 +78,12 @@ const useTaskCalls = () => {
     try {
       const {data} = await axiosPublic.patch(`/api/v1/task/${id}`, taskInfo, {withCredentials:'include'});
       getSingleTaskSuccess(data.task);
+      toastSuccessNotify(data.msg);
       await getTasks();
       await getTask(id);
     } catch (err) {
       dispatch(fetchFail());
-      console.log(err.response.data.msg)
-      // toastErrorNotify(err.response.data.msg);
+      toastErrorNotify(err.response.data.msg);
     }
   };
 

@@ -3,13 +3,12 @@ import {
   fetchStart,
   loginSuccess,
   logoutSuccess,
-  registrationSuccess,
   validationSuccess,
   fetchFail,
 } from "../features/authSlice";
 import { axiosPublic } from "../utils/axiosPublic";
 import { useNavigate } from "react-router-dom";
-// import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
 const useAuthCalls = () => {
   const dispatch = useDispatch();
@@ -22,12 +21,12 @@ const useAuthCalls = () => {
       const {data}  = await axiosPublic.post("api/v1/auth/login", userInfo, {withCredentials: 'include'});
       console.log(data.user)
       dispatch(loginSuccess(data));
-      // toastSuccessNotify("Logged In!");
+      toastSuccessNotify("Successfully logged in!");
       navigate("/");
     } catch (err) {
       dispatch(fetchFail());
       console.log(err)
-      // toastErrorNotify(err.response.data.msg);
+      toastErrorNotify(err.response.data.msg);
     }
   };
 
@@ -36,25 +35,23 @@ const useAuthCalls = () => {
     try {
       const {data}= await axiosPublic.delete("api/v1/auth/logout", {withCredentials: 'include'});
       dispatch(logoutSuccess());
-      // toastSuccessNotify(data.msg);
+      toastSuccessNotify(data.msg);
       navigate("/login");
     } catch (err) {
       dispatch(fetchFail(err));
-      // toastErrorNotify(err.response.data.msg);
+      toastErrorNotify(err.response.data.msg);
     }
   };
 
   const register = async (userInfo) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosPublic.post("api/v1/auth/register", userInfo, {withCredentials:'include'});
-      // dispatch(registrationSuccess(data))
-      // toastSuccessNotify(data.msg);
+      await axiosPublic.post("api/v1/auth/register", userInfo, {withCredentials:'include'});
+      toastSuccessNotify("Registered successfully!");
       navigate("/verify-email-warning");
     } catch (err) {
       dispatch(fetchFail());
-      console.log(err.response.data.msg)
-      // toastErrorNotify(err.response.data.msg);
+      toastErrorNotify(err.response.data.msg);
     }
   };
 
@@ -63,11 +60,9 @@ const useAuthCalls = () => {
     try {
       await axiosPublic.post("api/v1/auth/verify-email", userInfo);
       dispatch(validationSuccess());
-      // toastSuccessNotify("User Verified! Please Login!");
       navigate("/login");
     } catch (err) {
       dispatch(fetchFail());
-      // toastErrorNotify(err.response.data.msg);
     }
   };
 
@@ -75,13 +70,10 @@ const useAuthCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axiosPublic.post("/api/v1/auth/forgot-password", userInfo);
-      // dispatch(registrationSuccess(data))
-      // toastSuccessNotify(data.msg);
-      navigate("/login");
+      navigate("/forgot-password-warning");
     } catch (err) {
       dispatch(fetchFail());
-      console.log(err.response.data.msg)
-      // toastErrorNotify(err.response.data.msg);
+      toastErrorNotify(err.response.data.msg);
     }
   };
 
@@ -89,13 +81,11 @@ const useAuthCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axiosPublic.post("/api/v1/auth/reset-password", userInfo);
-      // dispatch(registrationSuccess(data))
-      // toastSuccessNotify(data.msg);
+      toastSuccessNotify(data.msg);
       navigate("/login");
     } catch (err) {
       dispatch(fetchFail());
-      console.log(err.response.data.msg)
-      // toastErrorNotify(err.response.data.msg);
+      toastErrorNotify(err.response.data.msg);
     }
   };
 
