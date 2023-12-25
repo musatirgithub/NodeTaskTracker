@@ -1,4 +1,5 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 
 import PrivateRouter from "./PrivateRouter";
 
@@ -35,6 +36,7 @@ const AppRouter = ()=>{
                 <Route path="/change-password" element={<PrivateRouter/>}>
                     <Route path="" element={<ChangePassword/>}/>
                 </Route>
+                <Route path="*" element={<Navigate to="/" />} />
             </Routes>
             <Footbar/>
         </BrowserRouter>
