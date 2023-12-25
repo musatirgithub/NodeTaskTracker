@@ -11,6 +11,7 @@ import Home from "../pages/Home";
 import VerifyEmail from "../pages/VerifyEmail";
 import VerifyEmailWarning from "../pages/VerifyEmailWarning";
 import ForgotPassword from "../pages/ForgotPassword";
+import ForgotPasswordWarning from "../pages/ForgotPasswordWarning";
 
 import Navbar from "../components/Navbar";
 import Footbar from "../components/Footbar";
@@ -26,6 +27,7 @@ const AppRouter = ()=>{
                 <Route path="/user/reset-password" element={<ResetPassword/>}/>
                 <Route path="/forgot-password" element={<ForgotPassword/>}/>
                 <Route path="/user/verify-email" element={<VerifyEmail/>}/>
+                <Route path="/forgot-password-warning" element={<ForgotPasswordWarning/>}/>
                 <Route path="/verify-email-warning" element={<VerifyEmailWarning/>}/>
                 <Route path="/tasks" element={<PrivateRouter/>}>
                     <Route path="" element={<Tasks/>}/>
