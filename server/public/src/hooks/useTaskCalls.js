@@ -33,6 +33,7 @@ const useTaskCalls = () => {
       dispatch(fetchFail());
       if(err?.response?.status === 401){
         dispatch(tokenTimeout());
+        toastErrorNotify("Login required!")
           navigate('/login')
         
       }
