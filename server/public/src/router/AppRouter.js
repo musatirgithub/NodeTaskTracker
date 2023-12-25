@@ -7,7 +7,6 @@ import ChangePassword from "../pages/ChangePassword";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ResetPassword from "../pages/ResetPassword";
-import Tasks from "../pages/Tasks";
 import Home from "../pages/Home";
 import VerifyEmail from "../pages/VerifyEmail";
 import VerifyEmailWarning from "../pages/VerifyEmailWarning";
@@ -22,7 +21,9 @@ const AppRouter = ()=>{
         <BrowserRouter>
             <Navbar/>
             <Routes>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/" element={<PrivateRouter/>}>
+                    <Route path="" element={<Home/>}/>
+                </Route>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/user/reset-password" element={<ResetPassword/>}/>
@@ -30,9 +31,6 @@ const AppRouter = ()=>{
                 <Route path="/user/verify-email" element={<VerifyEmail/>}/>
                 <Route path="/forgot-password-warning" element={<ForgotPasswordWarning/>}/>
                 <Route path="/verify-email-warning" element={<VerifyEmailWarning/>}/>
-                <Route path="/tasks" element={<PrivateRouter/>}>
-                    <Route path="" element={<Tasks/>}/>
-                </Route>
                 <Route path="/change-password" element={<PrivateRouter/>}>
                     <Route path="" element={<ChangePassword/>}/>
                 </Route>
