@@ -6,6 +6,7 @@ import {
   validationSuccess,
   fetchFail,
 } from "../features/authSlice";
+import { getTasks } from "./useTaskCalls";
 import { axiosPublic } from "../utils/axiosPublic";
 import { useNavigate } from "react-router-dom";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
@@ -19,6 +20,7 @@ const useAuthCalls = () => {
     try {
       const {data}  = await axiosPublic.post("api/v1/auth/login", userInfo, {withCredentials: 'include'});
       dispatch(loginSuccess(data));
+      getTasks();
       toastSuccessNotify("Successfully logged in!");
       navigate("/");
     } catch (err) {
