@@ -43,7 +43,7 @@ app.use(
 );
 app.use(helmet());
 const corsOptions = {
-    origin:'https://nodetasktracker.onrender.com',
+    origin:'https://node-task-tracker.vercel.app/',
     credentials:true,
 }
 app.use(cors(corsOptions));
