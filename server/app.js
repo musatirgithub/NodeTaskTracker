@@ -43,7 +43,7 @@ app.use(
 );
 app.use(helmet());
 const corsOptions = {
-    origin:'https://node-task-tracker.vercel.app',
+    origin:'http://localhost:3000', 
     credentials:true,
 }
 app.use(cors(corsOptions));
