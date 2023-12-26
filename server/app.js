@@ -4,6 +4,8 @@ require('express-async-errors');
 const express = require('express');
 const app = express();
 
+const path = require('path');
+
 
 // database
 const connectDB = require('./db/connect');
@@ -53,7 +55,7 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
 // static + fileUpload
-app.use(express.static('./public'));
+app.use(express.static(path.resolve(__dirname, './client/build')));
 app.use(fileUpload());
 
 // router uses
