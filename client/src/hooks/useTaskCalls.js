@@ -27,7 +27,7 @@ const useTaskCalls = () => {
   const getTasks = async () => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosPublic.get("/api/v1/task/", {withCredentials:'include'});
+      const { data } = await axiosPublic.get("/api/v1/task", {withCredentials:'include'});
       dispatch(getTasksSuccess(data.tasks));
     } catch (err) {
       dispatch(fetchFail());
