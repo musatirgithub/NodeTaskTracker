@@ -14,11 +14,12 @@ const TaskList = () => {
     const {tasks} = useSelector((state)=>state.task);
 
     const [loading, setLoading] = useState(true)
-    const {deleteTask, getTask} = useTaskCalls();
-    
+    const {getTasks, deleteTask, getTask} = useTaskCalls();
   
     useEffect(() => {
-      setLoading(false);
+        setLoading(true);
+            getTasks();
+        setLoading(false);
     }, [])
 
     const handleClick = (id)=>{
