@@ -21,7 +21,7 @@ const register = async (req,res)=>{
 
     const user = await User.create({name, email, password, role, verificationToken})
 
-    const origin = 'https://nodetasktracker.onrender.com';
+    const origin = 'https://node-task-tracker.vercel.app';
 
     await sendVerificationEmail({name:user.name, email:user.email, verificationToken:user.verificationToken, origin})
 
@@ -121,7 +121,7 @@ const forgotPassword = async (req,res)=>{
     const user = await User.findOne({email});
     if(user){
         const passwordToken = crypto.randomBytes(70).toString('hex');
-        const origin = 'https://nodetasktracker.onrender.com';
+        const origin = 'https://node-task-tracker.vercel.app';
         sendResetPasswordEmail({name:user.name, email:user.email, token:passwordToken, origin});
 
         const tenMinutes = 1000*60*10;
