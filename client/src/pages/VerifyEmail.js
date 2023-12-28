@@ -42,8 +42,8 @@ const VerifyEmail = () => {
     // }
   return (
     <main className='max-w-xl mx-auto p-5 min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center gap-5'>
-        <h4 className='text-center'>You are being verified.</h4>
-        <h4 className='text-center'>After verification you'll be redirected to Login Page.</h4>
+        <h4 className='text-center text-xl'>You are being verified.</h4>
+        <h4 className='text-center text-xl'>After verification you'll be redirected to Login Page.</h4>
         {/* <Link to='/login'>
         <button className='btn btn-warning'>Login</button>
         </Link> */}
