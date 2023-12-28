@@ -9,8 +9,8 @@ const UpdateTaskModal = () => {
   const dispatch = useDispatch();
     const {updateTask} = useTaskCalls();
     const {task} = useSelector((state)=>state.task);
-    const [checkData, setCheckData] = useState(task?.completed)
-    const [formData, setFormData] = useState({name:task?.name, deadline:task?.deadline, completed:checkData});
+    const [checkData, setCheckData] = useState(task ? task.completed : false)
+    const [formData, setFormData] = useState({name:null, deadline:null, completed:null});
 
     const handleChange = (e)=>{
         setFormData({...formData, [e.target.name]:e.target.value})
@@ -23,7 +23,7 @@ const UpdateTaskModal = () => {
     }
 
     useEffect(() => {
-      setFormData({name:task?.name, deadline:dateTimeFormatter(task?.deadline)});
+      setFormData({name:task?.name, deadline:dateTimeFormatter(task?.deadline), completed:task?.completed});
     }, [task])
     
 
@@ -34,12 +34,12 @@ const UpdateTaskModal = () => {
       <section className="flex flex-col gap-3">
         <div className="flex gap-3">
       {/* <label htmlFor="name">Task</label> */}
-      <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange}
+      <input type="text" name="name" id="name" required value={formData?.name} onChange={handleChange}
       className="w-[15rem] h-[2rem] rounded ps-2"/>
       </div>
       <div className="flex gap-3">
       {/* <label htmlFor="deadline">Deadline</label> */}
-      <input type="datetime-local" name="deadline" id="deadline" required value={formData.deadline} onChange={handleChange}
+      <input type="datetime-local" name="deadline" id="deadline" required value={formData?.deadline} onChange={handleChange}
       className="w-[15rem] h-[2rem] rounded ps-2"/>
       </div>
       <div className="flex justify-center gap-3">
