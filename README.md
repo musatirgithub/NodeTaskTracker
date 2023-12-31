@@ -26,7 +26,7 @@ Project aims to develop a safe task tracker; multiple users can signup, signin a
 
 ## Screenshot
 <p align="center">
-<a href="https://portfolio-project-musatir.vercel.app/"><img src="portfolio-project.gif" alt="gif"></a>
+<a href="https://node-task-tracker.vercel.app/"><img src="nodeTaskTracker.gif" alt="gif"></a>
 </p>
 
 
