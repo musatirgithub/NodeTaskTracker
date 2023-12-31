@@ -34,18 +34,26 @@ Project aims to develop a safe task tracker; multiple users can signup, signin a
 
 
 ### Project Information
-- Portfolio App is made by using React,
-- Projects are retrieved from Github API by using fetch method,
-- Users can search, filter and sort projects,
+- For backend Node.js and Express.js is used,
+- Verification Emails and Reset Password Emails are being sent by using Sendgrid package,
+- For encryption and decryption jwt package is used,
+- For backend security; express-rate-limit, helmet, xss-clean, cors, express-mongo-sanitize packages are used,
+- Token exchange between frontend and backend provided by adding double layered cookies (authentication token, refreshtoken),
+- Front end developed by using React,
+- Global state management is provided by using Redux-persist,
 - For providing multipage experience to user, React Router Dom is used,
-- For styling, traditidional CSS and Styled Components are used.
+- For styling, traditidional Tailwind CSS is used.
 
 ------
 I used;
+- Node.js
+- Express.js
+- jwt
+- Sendgrid
 - React
-- Styled Components
+- Redux-persist
 - React Router
-- Fetch Method
+- Tailwind CSS
 
 
 
@@ -53,15 +61,19 @@ I used;
 
 ## Lesson Learned
 
-- At the planning phase, considering the app as a simple one I've decided to keep search, filter and sort data in different useState hooks. In the end it was complicated to pass these states by props. Therefore rendering different components. For future apps i'm pallning to keep these kind of data in a global state. 
+- Befare starting this project, I had very limited knowledge about CORS. During the project I have faced many difficulties related with CORS issues. During the deployment I have deployed my backend to Render and Frontend to Vercel. But project didn't work. After a long search I have learned that I had to use sameSite : "None" property when I was adding cookies to the response. And when sending requests from frontend to backend I had to add {withCredentials: "included"}.
 
 ### Useful resources
 
 - [W3 Schoold](https://www.w3schools.com/) 
-- [MDN](https://developer.mozilla.org/en-US/) 
+- [MDN](https://developer.mozilla.org/en-US/)
+- [NODE.JS](https://nodejs.org/dist/latest-v16.x/docs/api/fs.html)
+- [EXPRESS.JS](https://expressjs.com/)
+- [JASONWEBTOKEN](https://jwt.io/introduction)
+- [SENDGRID](https://sendgrid.com/en-us)
 - [REACT](https://reactjs.org/) 
-- [STYLED COMPONENTS](https://styled-components.com/)
 - [REACT ROUTER](https://reactrouter.com/en/main) 
+- [TAILWINDCSS](https://styled-components.com/)
 
 
 
