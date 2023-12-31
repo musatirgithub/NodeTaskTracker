@@ -61,7 +61,7 @@ I used;
 
 ## Lesson Learned
 
-- Befare starting this project, I had very limited knowledge about CORS. During the project I have faced many difficulties related with CORS issues. During the deployment I have deployed my backend to Render and Frontend to Vercel. But project didn't work. After a long search I have learned that I had to use sameSite : "None" property when I was adding cookies to the response. And when sending requests from frontend to backend I had to add {withCredentials: "included"}.
+- Before starting this project, I had very limited knowledge about CORS. During the project I have faced many difficulties related with CORS issues. During the deployment I have deployed my backend to Render and Frontend to Vercel. But project didn't work. After a long research I have learned that I had to use sameSite : "None" property when I was adding cookies to the response. And when sending requests from frontend to backend I had to add {withCredentials: "included"}.
 
 ### Useful resources
 
