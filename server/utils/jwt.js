@@ -21,7 +21,7 @@ const attachCookiesToResponse = ({res, user, refreshToken})=>{
         signed:true,
         maxAge:oneDay,
         sameSite:"None",
-        // secure,
+        secure,
         // path:"/",
     });
 
@@ -32,7 +32,7 @@ const attachCookiesToResponse = ({res, user, refreshToken})=>{
         signed:true,
         expires: new Date(Date.now() + longerExpiration),
         sameSite:"None",
-        // secure,
+        secure,
         // path:"/",
     })
 }
