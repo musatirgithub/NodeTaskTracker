@@ -1,8 +1,8 @@
 
 const dateTimeConverter = (dateTime)=>{
     // const year = dateTime.getFullYear();
-    const month = (dateTime.getMonth() +1).toString();
-    const date = dateTime.getDate().toString();
+    let month = (dateTime.getMonth() +1).toString();
+    let date = dateTime.getDate().toString();
     if (month.length === 1){
         month = "0" + month;
     }
