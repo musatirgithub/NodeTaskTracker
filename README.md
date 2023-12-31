@@ -9,11 +9,16 @@
 
 
 ## The challenge
-Project aims to develop a safe task tracker multiple users can signup, signin and use.
+Project aims to develop a safe task tracker; multiple users can signup, signin and use.
 
 ## Problem Statement
 
-- Develop an app which  withdraw my public repos from github API, display them, allow users to search, filter and sort my projects.
+- Develop an app which requires email and password for signup. 
+- Provides a verification link in email.
+- Stores user passwords in the database as encrypted.
+- Sends reset password link to user email address in case user forgets the password.
+- Each user can see, update, delete his/her own tasks. 
+- According to the deadline, app provides a warning sign (red for passed deadlines, orange for deadlines witihin 24 hours, yellow for deadlines within 48 hours. 
 <hr>
 
 
