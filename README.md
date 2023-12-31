@@ -1,4 +1,4 @@
-# [Project : Node Task Tracker Project]([[https:///](https://node-task-tracker.vercel.app/)])
+# [Project : Node Task Tracker Project](https://node-task-tracker.vercel.app/)
 ## Table of contents
 
   - [The challenge](#the-challenge)
